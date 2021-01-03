@@ -5,14 +5,13 @@ plugins {
     kotlin("kapt")
 }
 
-val spoonacularKey = project.findProperty("SPOONACULAR_API_KEY")
-
 kapt {
     correctErrorTypes = true
     useBuildCache = true
 }
 
 tasks.test {
+    val spoonacularKey = project.findProperty("SPOONACULAR_API_KEY")
     if (spoonacularKey != null) environment("TEST_API_KEY", spoonacularKey)
 }
 

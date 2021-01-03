@@ -9,7 +9,9 @@ class SpoonacularServiceTest {
 
     lateinit var recipesService: RecipesService
 
-    private val spoonacular = Spoonacular("")
+    private val api: String? = System.getenv()["TEST_API_KEY"]
+
+    private val spoonacular = Spoonacular(api ?: "")
         .retrofitBuilder()
         .build()
 
@@ -20,9 +22,7 @@ class SpoonacularServiceTest {
 
     @Test
     fun validateApiKey() {
-        val api = System.getenv()["TEST_API_KEY"]
         assertThat(api.isNullOrBlank().not())
-        print(api)
     }
 
 }
